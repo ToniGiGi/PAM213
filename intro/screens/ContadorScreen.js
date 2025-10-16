@@ -23,11 +23,11 @@ export default function App() {
       <Button title="Agregar" onPress={()=>setcontador(contador+1)} color='#80fb73ff'/>
       <Button title="Restar" onPress={()=>setcontador(contador-1)} color='#ed6a6aff' />
       <Button title="Reiniciar" onPress={()=>setcontador(0)} color='#6da2ffff'/>
-    
-      </View>
-        
-      <StatusBar style="auto" />
 
+      </View>
+
+      <StatusBar style="auto" />
+      
     </View>
   );  
 }
