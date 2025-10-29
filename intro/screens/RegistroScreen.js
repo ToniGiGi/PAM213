@@ -1,89 +1,82 @@
+//Exportacion de la pantalla de registro de usuario, aqui ponemos todo lo necesario para que el usuario pueda registrarse en la app
+
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  Alert,
-  Switch,
-  ImageBackground,
-  Image,
-  ActivityIndicator,
-  StatusBar // 1. Importamos StatusBar
+import {View,Text,TextInput,TouchableOpacity,StyleSheet,Alert,Switch,ImageBackground,Image,ActivityIndicator,StatusBar 
 } from 'react-native';
 
+// Estos son los componentes de la pantalla de registro
 const RegistroScreen = () => {
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
   const [aceptaTerminos, setAceptaTerminos] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Esta funcion es para manejar el registro con una funcion flecha
   const handleRegistro = () => {
-    // 6. Validación de no campos vacíos
-    if (!nombre.trim() || !email.trim()) {
-      Alert.alert("Error", "Por favor, completa todos los campos.");
+    const nombreLimpio = nombre.trim();
+    const emailLimpio = email.trim();
+
+    // Los if para validar los campos del formulario
+    if (!nombreLimpio && !emailLimpio) {
+      Alert.alert("Error", "Todos los campos están vacíos");
+      return; 
+    }
+    if (!nombreLimpio) {
+      Alert.alert("Error", "No ingresaste nombre");
       return;
     }
-
-    // 7. Validación de "debes aceptar términos y condiciones"
-    if (!aceptaTerminos) {
-      Alert.alert("Error", "Debes aceptar los términos y condiciones para continuar.");
+    if (!emailLimpio) {
+      Alert.alert("Error", "No ingresaste correo electrónico");
       return;
     }
-
-    // Validación extra (opcional pero buena) de email
     const emailRegex = /\S+@\S+\.\S+/;
-    if (!emailRegex.test(email)) {
-      Alert.alert("Error", "Por favor, ingresa un correo electrónico válido.");
+    if (!emailRegex.test(emailLimpio)) {
+      Alert.alert("Error", "El formato del correo no es válido");
       return;
     }
+    if (!aceptaTerminos) {
+      Alert.alert("Error", "Debes aceptar los términos y condiciones");
+      return;
+    }  
 
-    // 1. Logo personalizado de carga (simulación)
+    // Simulacion de proceso de registro
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      
-      // 5. Alerta que muestra los datos
+  
+    // Alerta de exito
       Alert.alert(
         "¡Registro Exitoso!",
-        `Nombre: ${nombre}\nCorreo: ${email}`,
+        `Nombre: ${nombreLimpio}\nCorreo: ${emailLimpio}`, 
         [{ text: "OK" }]
       );
-      
+
+      // Esto me sirve pra limpiar los campos despues del registro
       setNombre('');
       setEmail('');
       setAceptaTerminos(false);
-
     }, 2000);
   };
 
+// Retorno del componente RegistroScreen
   return (
     <View style={styles.container}>
-      {/* 2. Añadimos StatusBar igual a tu ejemplo */}
       <StatusBar 
         barStyle="light-content" 
         backgroundColor="transparent" 
         translucent={true} 
       />
-
-      {/* 8. Imagen de fondo */}
       <ImageBackground
-        source={require('../assets/background.jpg')} // Asegúrate de tener esta imagen
+        source={require('../assets/background.jpg')} 
         resizeMode="cover"
         style={styles.fondo}
       >
-        {/* Contenedor del formulario con transparencia */}
-        <View style={styles.formularioContenedor}>
-        
-          {/* 1. Logo (usando el icon.png de tu proyecto) */}
+        <View style={styles.formularioContenedor}>   
           <Image
             source={require('../assets/icon.png')}
             style={styles.logo}
             resizeMode="contain"
           />
-
-          {/* 2. Solicitud Nombre y correo */}
           <TextInput
             style={styles.input}
             placeholder="Nombre completo"
@@ -100,8 +93,6 @@ const RegistroScreen = () => {
             keyboardType="email-address"
             autoCapitalize="none"
           />
-
-          {/* 3. Switch para aceptar términos */}
           <View style={styles.switchContenedor}>
             <Text style={styles.switchTexto}>Acepto términos y condiciones</Text>
             <Switch
@@ -109,8 +100,6 @@ const RegistroScreen = () => {
               value={aceptaTerminos}
             />
           </View>
-
-          {/* 4. Botón para registrarse */}
           <TouchableOpacity
             style={styles.boton}
             onPress={handleRegistro}
@@ -129,6 +118,7 @@ const RegistroScreen = () => {
   );
 }
 
+// Estilos para la pantalla de registro
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -139,9 +129,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   formularioContenedor: {
-    width: '90%', // Más simple, sin Dimensions
+    width: '90%', 
     padding: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.7)', // Fondo blanco con 70% opacidad
+    backgroundColor: 'rgba(255, 255, 255, 0.7)', 
     borderRadius: 10,
     alignItems: 'center',
   },
@@ -153,7 +143,7 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     height: 50,
-    backgroundColor: '#ffffff', // Fondo blanco sólido para leer bien
+    backgroundColor: '#ffffff', 
     borderRadius: 8,
     paddingHorizontal: 15,
     marginBottom: 15,
@@ -170,7 +160,7 @@ const styles = StyleSheet.create({
   },
   switchTexto: {
     fontSize: 14,
-    color: '#333', // Texto oscuro para fondo claro
+    color: '#333', 
   },
   boton: {
     width: '100%',

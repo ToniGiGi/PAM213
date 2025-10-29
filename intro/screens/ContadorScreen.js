@@ -1,11 +1,10 @@
 
-//1. Imports, zona de importaciones OBLIGATORIAS
+
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import React, { use, useState } from 'react';
 
 
-//2. Main, Zona de componentes OBLIGATORIAS
 export default function App() {
   
   const [contador, setcontador]=useState(0);
@@ -32,7 +31,6 @@ export default function App() {
   );  
 }
 
-//3. Estilos, zona de estetica ESTO NO ES OBLIGATORIO
 const styles = StyleSheet.create({
   container: {
     flex: 1,
