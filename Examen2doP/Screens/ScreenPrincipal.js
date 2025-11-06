@@ -1,3 +1,5 @@
+//simulacion de pantalla "Mi galeria" coon 6 fotos con descripcion de cada una 
+
 import React, { useState } from 'react';
 import {View,Text,TextInput,TouchableOpacity,StyleSheet,Alert,Switch,ImageBackground,Image,ActivityIndicator,StatusBar 
 } from 'react-native';
@@ -11,21 +13,17 @@ export default function ScreenPrincipal() {
   return (
     <View style={styles.container}>
       <Text style={styles.texto}>MI GALERIA</Text>
-
-
-
-
-      
+             <ImageBackground
+              source={require('../assets/background.jpg')} 
+              resizeMode="cover"
+              style={styles.foto2}
+            ></ImageBackground>
+                <View style={styles.descripcion}>
+            <Text style={styles.texto2}>Esta foto fue tomada de google, realmente no tiene mucho que hacer o decir al respecto</Text>
+      </View>
     </View>
-
-   
   );
-
 }
-
-
-
-//agregar 6 fotografias en la app
 
 
 
@@ -39,9 +37,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#fafafa',
   },
   texto: {
-    fontSize: 18,
     color: '#333',
     fontWeight: 'bold',
+  },
+  Descripcion: {
+    flex: 2,
+    justifyContent: 'down',
+    alignItems: 'center',
+    backgroundColor: '#30a3ddff',
+  },
+  foto2: {
+    flexDirection: 'left',
+    alignItems: 'center',
+    gap: 10,
   },
   
 });
