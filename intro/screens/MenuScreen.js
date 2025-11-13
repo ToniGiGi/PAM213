@@ -10,6 +10,7 @@ import FatListScreen from './FatListScreen';
 import ModalScreen from './ModalScreen';
 import ButtonShetScreen from './ButtonShetScreen';
 import RegistroScreen from './RegistroScreen';
+import SectionList from './SectionList';
 
 export default function MenuScreen() {
   const [screen, setScreen] = useState('menu');
@@ -35,6 +36,8 @@ export default function MenuScreen() {
       return <ButtonShetScreen />;
     case 'RegistroScreen':
       return <RegistroScreen />;
+      case 'sectionlist':
+      return <SectionList />;
     default:
       return (
         <View style={styles.botonesContainer}>
@@ -49,6 +52,7 @@ export default function MenuScreen() {
             <Button title="Pract: Modal" onPress={() => setScreen('modal')} />
             <Button title="Pract: ButtonShet" onPress={() => setScreen('buttonshet')} />
             <Button title="Pract: RegistroScreen" onPress={() => setScreen('RegistroScreen')} />
+            <Button title="Pract: SectionList" onPress={() => setScreen('sectionlist')} />
         </View>
       );
   }
